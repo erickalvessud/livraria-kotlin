@@ -16,6 +16,13 @@ service LivroService {
         get: "/livros/{id}"
     };
   }
+
+  rpc SalvaLivro (SalvaLivroRequest) returns (LivroReply) {
+    option (google.api.http) = {
+      post: "/livros"
+        body: "*"
+    };
+  }
 }
 
 message FindLivroRequest {
@@ -25,4 +32,8 @@ message FindLivroRequest {
 message LivroReply {
   int64 id = 1;
   string titulo = 2;
+}
+
+message SalvaLivroRequest{
+  string titulo = 1;
 }
