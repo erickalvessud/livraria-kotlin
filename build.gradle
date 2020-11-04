@@ -37,6 +37,7 @@ micronaut {
 }
 
 dependencies {
+    kapt("io.micronaut.data:micronaut-data-processor")
     kapt(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
     kapt("io.micronaut:micronaut-inject-java")
     kapt("io.micronaut:micronaut-validation")
@@ -63,6 +64,12 @@ dependencies {
 
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.0")
     testRuntime("org.jetbrains.spek:spek-junit-platform-engine:1.1.5")
+    testRuntimeOnly("org.testcontainers:mysql")
+
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    runtimeOnly("mysql:mysql-connector-java")
+
 
     //implementation("javax.annotation:javax.annotation-api")
     //implementation("io.micronaut:micronaut-validation")

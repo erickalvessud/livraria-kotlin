@@ -1,14 +1,19 @@
 package com.erick.application.services
 
 import com.erick.LivroReply
-import com.google.common.base.Optional
+import com.erick.adapters.persistence.repositories.LivroRepository
+import java.util.*
 import javax.inject.Singleton
 
 @Singleton
-class LIvroService() {
+class LIvroService(private val livroRepository: LivroRepository) {
 
-    public fun findById(id: Long) : Optional<LivroReply> {
-        val livro = LivroReply.newBuilder().setId(1).setTitulo("Kotlin").build()
-        return Optional.of(livro)
+    fun findById(id: Long) : Optional<LivroReply> {
+        return this.livroRepository.findById(id).map { livroEntity ->
+            LivroReply.newBuilder()
+                    .setId(livroEntity.id!!)
+                    .setTitulo(livroEntity.titulo)
+                    .build()
+        }
     }
 }
