@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.erick";
+option objc_class_prefix = "HLW";
+//option java_outer_classname = "LivrariaKotlin";
+
+package com.erick;
+
+import "google/api/annotations.proto";
+
+service LivroService {
+
+  rpc FindLivroById (FindLivroRequest) returns (LivroReply) {
+    option (google.api.http) = {
+        get: "/livros/{id}"
+    };
+  }
+}
+
+message FindLivroRequest {
+  int64 id = 1;
+}
+
+message LivroReply {
+  int64 id = 1;
+  string titulo = 2;
+}

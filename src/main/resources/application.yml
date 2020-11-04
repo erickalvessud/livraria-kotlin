@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: livrariaKotlin
+  grpc:
+    server:
+      port: 8080
